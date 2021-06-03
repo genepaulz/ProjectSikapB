@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+</head>
+<body>
+    
+    <form action="" method="POST">
+        {% csrf_token %}
+        FOR APPLICANT
+        <input type="text" name="aemail" placeholder="Email">
+        <input type="password" name="apassword" placeholder="Password">
+        <input type="text" name="aname" id="" placeholder="Name">
+        <input type="text" name="asurname" id="" placeholder="Last Name">
+        <input type="text" name="aindustry" placeholder="Industry">
+        <input type="text" name="aregion" placeholder="Region">
+        <input type="text" name="aprovince" placeholder="Province">
+        <input type="text" name="acity" placeholder="City">
+        <input type="number" name="aage" placeholder="Age" value="18">
+        <button type="submit" name="applicant">Register</button><br><br>
+        FOR EMPLOYER
+        <input type="text" name="eemail" placeholder="Email">
+        <input type="password" name="epassword" placeholder="Password">
+        <input type="text" name="ename" id="" placeholder="Name">
+        <input type="text" name="esurname" id="" placeholder="Last Name">
+        <input type="text" name="ecompanyName" placeholder="Company Name">
+        <input type="text" name="eindustry" placeholder="Industry">
+        <button type="submit" name="employer">Register</button><br>
+    </form>
+</body>
+</html>
