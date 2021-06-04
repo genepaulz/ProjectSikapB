@@ -1,4 +1,5 @@
 from django.shortcuts import render,redirect
+from django.http import JsonResponse
 from django.views.generic import View,TemplateView
 from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
@@ -6,6 +7,7 @@ from django.template import *
 from .import views
 from datetime import *
 from passlib.hash import pbkdf2_sha256
+from app.models import Posts
 
 #from .forms import *
 # Create your views here.
@@ -195,7 +197,40 @@ class ViewAsEView(View):
         if('logout' in request.POST):
             del request.session['email']
             return redirect('app:landing_view')
+
     
+def LiveSearch(request):
+    template_name = "index.html"
+    filt = request.GET.getlist("d")[0]
+    d=""
+    mat = Posts.objects.filter(industry__icontains=filt)
+    print(filt)
+    for objects in mat:
+        d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
+    print(d)
+    mat = Posts.objects.filter(region__icontains=filt)
+    for objects in mat:
+        d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
+    print(d)
+    mat = Posts.objects.filter(province__icontains=filt)
+    for objects in mat:
+        d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
+    print(d)
+    mat = Posts.objects.filter(city__icontains=filt)
+    for objects in mat:
+        d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
+    print(d)
+    return JsonResponse({"d": d})
+    #def get(self, request):
+     #   if 'term' in request.GET:
+      #      qs = Material.objects.filter(title__icontains=request.GET.get('term'))
+       #     titles = list()
+        #    for material in qs:
+         #       print(material)
+          #      titles.append(material.title)
+           # return JsonResponse(titles, safe=False)
+
+        #return render(request, 'search.html')    
 
 #END OF VIEWAS
 

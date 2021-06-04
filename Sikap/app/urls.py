@@ -10,4 +10,5 @@ urlpatterns = [
     path('view/a',views.ViewAsAView.as_view(),name="viewasa_view"),
     path('view/e',views.ViewAsEView.as_view(),name="viewase_view"),
     path('posts/',views.PostsView.as_view(),name="posts_view"),
+    path('view/get/ajax/friend', views.LiveSearch , name="LiveSearch"),
 ]

@@ -4,10 +4,46 @@
 {% load static %}
 <link rel="stylesheet" href="{% static 'style1.css'%}">
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+<script>
+    //var str = document.getElementById("materialInput").value;
+    //console.log(str);
+    $(document).ready(function(){
+        $("input").keypress(function(){
+            setTimeout(function(){ $.ajax({                
+            url: "get/ajax/friend",
+            data: {"d": $("#materialInput").val()},
+            dataType: "json",
+            beforeSend: function(){
+                if(($("#materialInput").val()).length <= 3){
+                    $("#table_body").html("hello");
+                    return false;
+                }
+            return true;
+            },
+            success: function(result){                    
+                $("#table_body").html(result["d"]);                
+            }
+        }); 
+    }, 1500);
+        //$("#table_body").remove()                        
+                                   
+    });
+    
+    });
 
+    
+</script>
 <style>
+#table_body{
+    margin-top: 10%;
+}
+#results{
+    margin-top:1%;
+}
 .navbar{
     width: 100%;
     position: fixed;
@@ -34,40 +70,39 @@
             <div class="nav-right">
                 <form class="form-inline my-2 my-lg-0 al" style="padding-top: 10px;">
                     
-                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search" id="materialInput" name="materialInput">
                     <button class="btn btn-outline-success my-2 my-sm-0" style="background: #0496ff;" type="submit" name="search">Search</button>
                 </form>
             </div>
         </div>
-    </nav>
+    </nav> 
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+            <div class="sidebar">
+                <center>
+                    <img src="{% static 'sample.jpg'%}" class ="profile_image" alt="">
+                </center>
+                <header> {{profile.companyName}} </header>
+                <ul class ="sidebar-nav">
+                    <li><a href="#">Profile</a></li>
+                    <li><a href="#">Search</a></li>
+                    <form action="" method="post">
+                        {% csrf_token %}
+                        <li><a href="#"><input type="submit" value="Logout" name="logout"></a></li>
+                    </form>
+                </ul>
+            </div>
+        </div>
 
-    <div class="sidebar">
-        <center>
-            <img src="{% static 'sample.jpg'%}" class ="profile_image" alt="">
-        </center>
-        <header> {{profile.companyName}} </header>
-        <ul class ="sidebar-nav">
-            <li><a href="#">Profile</a></li>
-            <li><a href="#">Search</a></li>
-            <form action="" method="post">
-                {% csrf_token %}
-                <li><a href="#"><input type="submit" value="Logout" name="logout"></a></li>
-            </form>
-        </ul>
+    <div class="col-sm-3" id="table_body">
+        
     </div>
-
-    <div class ="animation-area">
-        <ul class="box-area">
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-            <li></li>
-        </ul>
     </div>
-
-    <div class ="charts">
-    </div>
-
+</div>
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
 </body>
 </html>
