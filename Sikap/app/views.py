@@ -15,6 +15,14 @@ from passlib.hash import pbkdf2_sha256
 class LandingView(View):
     def get(self,request):
         return render(request,'index.html')
+    
+    def post(self,request):
+        if('login' in request.POST):
+            return redirect('app:login_view')
+        elif('rega' in request.POST):
+            return redirect('app:registera_view')
+        elif('rege' in request.POST):
+            return redirect('app:registere_view')
 
 #END OF LANDING
 
