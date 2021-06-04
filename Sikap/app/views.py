@@ -1,6 +1,6 @@
 from django.shortcuts import render,redirect
 from django.views.generic import View,TemplateView
-from django.http import HttpResponse
+from django.http import HttpResponse, HttpResponseRedirect
 from .models import *
 from django.template import *
 from .import views
@@ -30,22 +30,19 @@ class LoginView(View):
         password = request.POST.get("pass")
 
         q = User.objects.get(email=email)
-<<<<<<< HEAD
         context = {
             'profile' : q,
         }
-
-        if(q.password == password):
-=======
-        #if(q.password == password):
         if(q.verify_password(password)):
->>>>>>> 551bce025350d0972c20d3f8832ccb1cba0414b1
             if(q.user_type):
                 #IMPLEMENT CONTEXT HERE
                 return render(request,'viewase.html',context)
+                
             else:
                 #IMPLEMENT CONTEXT HERE
                 return render(request,'applicant.html',context)
+                
+                
         else:
             return HttpResponse("User does not EXIST!")
 
@@ -54,9 +51,9 @@ class LoginView(View):
 
 #START OF REGISTER
 
-class RegisterView(View):
+class RegisterViewA(View):
     def get(self,request):
-        return render(request,'register.html')
+        return render(request,'Applicant_Registration.html')
 
     def post(self,request):
         if 'applicant' in request.POST:
@@ -108,50 +105,58 @@ class RegisterView(View):
                 form.save()
                 return redirect('app:landing_view')
 
-        elif 'employer' in request.POST:
-                account_type = 1
-                email = request.POST.get("eemail")
-                password = request.POST.get("epassword")
-                name = request.POST.get("ename")
-                surname = request.POST.get("esurname")
-                user_type = 1
-                isVerified = 0
-                companyName = request.POST.get("ecompanyName")
-                industry = request.POST.get("eindustry")
+#END OF REGISTERA
 
-                #encrypt password
-                enc_password = pbkdf2_sha256.encrypt(password, rounds=10,salt_size=16);
+#START OF REGISTERE
+
+class RegisterViewE(View):
+    def get(self,request):
+        return render(request,'Employer_Registration.html')
+
+    def post(self,request):
+        if 'employer' in request.POST:
+                    account_type = 1
+                    email = request.POST.get("eemail")
+                    password = request.POST.get("epassword")
+                    name = request.POST.get("ename")
+                    surname = request.POST.get("esurname")
+                    user_type = 1
+                    isVerified = 0
+                    companyName = request.POST.get("ecompanyName")
+                    industry = request.POST.get("eindustry")
+
+                    #encrypt password
+                    enc_password = pbkdf2_sha256.encrypt(password, rounds=10,salt_size=16);
 
 
-                print(account_type)
-                print(email)
-                print(password)
-                print(name)
-                print(surname)
-                print(user_type)
-                print(isVerified)
-                print(industry)
+                    print(account_type)
+                    print(email)
+                    print(password)
+                    print(name)
+                    print(surname)
+                    print(user_type)
+                    print(isVerified)
+                    print(industry)
 
-                form = User(
-                    account_type = account_type,
-                    email = email,
-                    password = enc_password,
-                    name = name,
-                    surname = surname,
-                    user_type = user_type,
-                    isVerified = isVerified,
-                    companyName = companyName,
-                    industry = industry,
-                    region = "",
-                    province = "",
-                    city = "",
-                    age = 0
-                )
-                form.save()
-                return redirect('app:landing_view')
+                    form = User(
+                        account_type = account_type,
+                        email = email,
+                        password = enc_password,
+                        name = name,
+                        surname = surname,
+                        user_type = user_type,
+                        isVerified = isVerified,
+                        companyName = companyName,
+                        industry = industry,
+                        region = "",
+                        province = "",
+                        city = "",
+                        age = 0
+                    )
+                    form.save()
+                    return redirect('app:landing_view')
 
-#END OF LOGIN
-
+#END OF REGISTERE
 
 #START OF VIEWAS
 
