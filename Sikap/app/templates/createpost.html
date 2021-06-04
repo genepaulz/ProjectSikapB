@@ -133,6 +133,7 @@ body{
             <div class ="input-fields">
                 <form action="" method="POST">
                     {% csrf_token %}
+                    <input type="hidden" value="{{profile.email}}" name="email">
                     <input type="number" class="input" name="yearsOfExperience" placeholder="Years of Experience">
                     <input type="text" class="input" name="industry" placeholder="Industry">
                     <input type="text" class="input" name="region" placeholder="Region">

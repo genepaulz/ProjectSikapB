@@ -164,6 +164,15 @@ class RegisterViewE(View):
 class ViewAsAView(View):
     def get(self,request):
         return render(request,'applicant.html')
+    
+    def post(self,request):
+        
+        email = request.POST.get("email")
+        q = User.objects.get(email = email)
+        context = {
+            'profile' : q,
+        }
+        return render(request,'createpost.html',context)
 
 
 class ViewAsEView(View):
@@ -180,6 +189,7 @@ class PostsView(View):
         return render(request,'createpost.html')
 
     def post(self,request):
+        email = request.POST.get("email")
         yearsOfExperience = request.POST.get("yearsOfExperience")
         industry = request.POST.get("industry")
         region = request.POST.get("region")
@@ -200,6 +210,7 @@ class PostsView(View):
             city = city,
             age = age,
             dateadded = datetime.now(),
+            email = email,
             # EMAIL TO BE IMPLEMENTED WHEN WE HAVE SESSIONS
             isAgeViewable = isAgeViewable
         )

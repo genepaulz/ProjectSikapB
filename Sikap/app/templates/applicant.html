@@ -196,6 +196,7 @@ nav{
                         <div class="profile-usertitle-job">
                         {{profile.industry}}
                         </div>
+                        
 
                     </div>
                     <!-- END SIDEBAR USER TITLE -->
@@ -203,7 +204,11 @@ nav{
                     <div class="profile-userbuttons">
                         <button type="button" class="btn btn-success btn-sm">Find</button>
                         <button type="button" class="btn btn-danger btn-sm">Logout</button>
-                        <a href="http://127.0.0.1:8000/posts/"><button type="button" class="btn btn-danger btn-sm">CREATE POST</button></a>
+                        <form action="" method="POST">
+                          {% csrf_token %}
+                          <input type="hidden" value="{{profile.email}}" name="email">
+                          <button type="submit" class="btn btn-danger btn-sm" name="post">CREATE POST</button>
+                        </form>
                     </div>
                     <!-- END SIDEBAR BUTTONS -->
                     <!-- SIDEBAR MENU -->
