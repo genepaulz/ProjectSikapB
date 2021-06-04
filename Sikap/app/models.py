@@ -1,4 +1,5 @@
 from django.db import models
+from passlib.hash import pbkdf2_sha256
 
 # Create your models here.
 
@@ -20,6 +21,9 @@ class User(models.Model):
 
     def __str__(self):
         return self.name
+
+    def verify_password(self, raw_password):
+        return pbkdf2_sha256.verify(raw_password, self.password)
 
     class Meta:
         db_table = "User"
