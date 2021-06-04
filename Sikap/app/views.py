@@ -30,17 +30,17 @@ class LoginView(View):
         password = request.POST.get("pass")
 
         q = User.objects.get(email=email)
-        context = {
-            'profile' : q,
-        }
         if(q.verify_password(password)):
             if(q.user_type):
-                #IMPLEMENT CONTEXT HERE
+                #IMPLEMENT CONTEXT HERE                
                 return render(request,'viewase.html',context)
                 
             else:
                 #IMPLEMENT CONTEXT HERE
-                return render(request,'applicant.html',context)
+                request.session['name'] = q.name
+                request.session['industry'] = q.industry
+                return redirect('app:viewasa_view')
+                # return render(request,'applicant.html',context)
                 
                 
         else:
