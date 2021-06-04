@@ -5,6 +5,7 @@ from .models import *
 from django.template import *
 from .import views
 from datetime import *
+from passlib.hash import pbkdf2_sha256
 
 #from .forms import *
 # Create your views here.
@@ -29,11 +30,16 @@ class LoginView(View):
         password = request.POST.get("pass")
 
         q = User.objects.get(email=email)
+<<<<<<< HEAD
         context = {
             'profile' : q,
         }
 
         if(q.password == password):
+=======
+        #if(q.password == password):
+        if(q.verify_password(password)):
+>>>>>>> 551bce025350d0972c20d3f8832ccb1cba0414b1
             if(q.user_type):
                 #IMPLEMENT CONTEXT HERE
                 return render(request,'viewase.html',context)
@@ -66,6 +72,11 @@ class RegisterView(View):
                 province = request.POST.get("aprovince")
                 city = request.POST.get("acity")
                 age = request.POST.get("aage")
+
+                #Encrypt Password
+                enc_password = pbkdf2_sha256.encrypt(password, rounds=10,salt_size=16);
+
+
                 print(account_type)
                 print(email)
                 print(password)
@@ -82,7 +93,7 @@ class RegisterView(View):
                 form = User(
                     account_type = account_type,
                     email = email,
-                    password = password,
+                    password = enc_password,
                     name = name,
                     surname = surname,
                     user_type = user_type,
@@ -107,6 +118,11 @@ class RegisterView(View):
                 isVerified = 0
                 companyName = request.POST.get("ecompanyName")
                 industry = request.POST.get("eindustry")
+
+                #encrypt password
+                enc_password = pbkdf2_sha256.encrypt(password, rounds=10,salt_size=16);
+
+
                 print(account_type)
                 print(email)
                 print(password)
@@ -119,7 +135,7 @@ class RegisterView(View):
                 form = User(
                     account_type = account_type,
                     email = email,
-                    password = password,
+                    password = enc_password,
                     name = name,
                     surname = surname,
                     user_type = user_type,
