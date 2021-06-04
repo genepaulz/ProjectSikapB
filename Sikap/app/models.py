@@ -30,6 +30,10 @@ class User(models.Model):
 
 
 class Posts(models.Model):
+    email = models.CharField(max_length = 100)
+    name = models.CharField(max_length = 100)
+    surname = models.CharField(max_length = 100)
+    position = models.CharField(max_length = 100)
     yearsOfExperience = models.IntegerField()
     industry = models.CharField(max_length = 100)
     region = models.CharField(max_length = 100)
@@ -37,9 +41,8 @@ class Posts(models.Model):
     city = models.CharField(max_length = 100)
     age = models.IntegerField()
     dateadded = models.DateField()
-    email = models.CharField(max_length = 100)
     isAgeViewable = models.IntegerField()
-
+    
     class Meta:
         db_table = "Posts"
 
