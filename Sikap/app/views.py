@@ -17,6 +17,14 @@ from app.models import Posts
 class LandingView(View):
     def get(self,request):
         return render(request,'index.html')
+    
+    def post(self,request):
+        if('login' in request.POST):
+            return redirect('app:login_view')
+        elif('rega' in request.POST):
+            return redirect('app:registera_view')
+        elif('rege' in request.POST):
+            return redirect('app:registere_view')
 
 #END OF LANDING
 
@@ -35,7 +43,8 @@ class LoginView(View):
         if(q.verify_password(password)):
             if(q.user_type):
                 #IMPLEMENT CONTEXT HERE
-                request.session['email'] = q.email                
+                request.session['email'] = q.email       
+                request.session['companyName'] = q.companyName
                 return redirect('app:viewase_view')
                 
             else:
@@ -196,6 +205,7 @@ class ViewAsEView(View):
     def post(self,request):
         if('logout' in request.POST):
             del request.session['email']
+            del request.session['companyName']
             return redirect('app:landing_view')
 
     

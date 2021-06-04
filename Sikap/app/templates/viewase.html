@@ -94,6 +94,22 @@
                 </ul>
             </div>
         </div>
+    </nav>
+
+    <div class="sidebar">
+        <center>
+            <img src="{% static 'sample.jpg'%}" class ="profile_image" alt="">
+        </center>
+        <header> {{request.session.companyName}} </header>
+        <ul class ="sidebar-nav">
+            <li><a href="#">Profile</a></li>
+            <li><a href="#">Search</a></li>
+            <form action="" method="post">
+                {% csrf_token %}
+                <li><a href="#"><input type="submit" value="Logout" name="logout"></a></li>
+            </form>
+        </ul>
+    </div>
 
     <div class="col-sm-3" id="table_body">
         
