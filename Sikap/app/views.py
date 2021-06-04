@@ -29,13 +29,17 @@ class LoginView(View):
         password = request.POST.get("pass")
 
         q = User.objects.get(email=email)
+        context = {
+            'profile' : q,
+        }
+
         if(q.password == password):
             if(q.user_type):
                 #IMPLEMENT CONTEXT HERE
-                return render(request,'viewase.html')
+                return render(request,'viewase.html',context)
             else:
                 #IMPLEMENT CONTEXT HERE
-                return render(request,'applicant.html')
+                return render(request,'applicant.html',context)
         else:
             return HttpResponse("User does not EXIST!")
 
@@ -48,7 +52,7 @@ class RegisterView(View):
     def get(self,request):
         return render(request,'register.html')
 
-    def post(self,request):        
+    def post(self,request):
         if 'applicant' in request.POST:
                 account_type = 1
                 email = request.POST.get("aemail")
@@ -90,7 +94,7 @@ class RegisterView(View):
                     city = city,
                     age = age
                 )
-                form.save()                
+                form.save()
                 return redirect('app:landing_view')
 
         elif 'employer' in request.POST:
@@ -139,7 +143,7 @@ class ViewAsAView(View):
     def get(self,request):
         return render(request,'applicant.html')
 
-    
+
 class ViewAsEView(View):
     def get(self,request):
         return render(request,'viewase.html')
@@ -153,7 +157,7 @@ class PostsView(View):
     def get(self,request):
         return render(request,'createpost.html')
 
-    def post(self,request):        
+    def post(self,request):
         yearsOfExperience = request.POST.get("yearsOfExperience")
         industry = request.POST.get("industry")
         region = request.POST.get("region")
