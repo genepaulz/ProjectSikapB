@@ -57,7 +57,7 @@ class RegisterViewA(View):
 
     def post(self,request):
         if 'applicant' in request.POST:
-                account_type = 1
+                
                 email = request.POST.get("aemail")
                 password = request.POST.get("apassword")
                 name = request.POST.get("aname")
@@ -74,7 +74,7 @@ class RegisterViewA(View):
                 enc_password = pbkdf2_sha256.encrypt(password, rounds=10,salt_size=16);
 
 
-                print(account_type)
+                
                 print(email)
                 print(password)
                 print(name)
@@ -88,7 +88,7 @@ class RegisterViewA(View):
                 print(age)
 
                 form = User(
-                    account_type = account_type,
+                    
                     email = email,
                     password = enc_password,
                     name = name,
@@ -115,7 +115,7 @@ class RegisterViewE(View):
 
     def post(self,request):
         if 'employer' in request.POST:
-                    account_type = 1
+                    
                     email = request.POST.get("eemail")
                     password = request.POST.get("epassword")
                     name = request.POST.get("ename")
@@ -129,7 +129,7 @@ class RegisterViewE(View):
                     enc_password = pbkdf2_sha256.encrypt(password, rounds=10,salt_size=16);
 
 
-                    print(account_type)
+                    
                     print(email)
                     print(password)
                     print(name)
@@ -139,7 +139,7 @@ class RegisterViewE(View):
                     print(industry)
 
                     form = User(
-                        account_type = account_type,
+                        
                         email = email,
                         password = enc_password,
                         name = name,
