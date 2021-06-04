@@ -202,12 +202,15 @@ nav{
                     <!-- END SIDEBAR USER TITLE -->
                     <!-- SIDEBAR BUTTONS -->
                     <div class="profile-userbuttons">
-                        <button type="button" class="btn btn-success btn-sm">Find</button>
-                        <button type="button" class="btn btn-danger btn-sm">Logout</button>
+                        
+                        
                         <form action="" method="POST">
                           {% csrf_token %}
                           <input type="hidden" value="{{profile.email}}" name="email">
+                          <button type="button" class="btn btn-success btn-sm">Find</button>
                           <button type="submit" class="btn btn-danger btn-sm" name="post">CREATE POST</button>
+                          <button type="submit" class="btn btn-danger btn-sm" name="logout">Logout</button>
+                          
                         </form>
                     </div>
                     <!-- END SIDEBAR BUTTONS -->

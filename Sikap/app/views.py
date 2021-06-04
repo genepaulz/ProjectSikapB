@@ -173,12 +173,29 @@ class ViewAsAView(View):
         return render(request,'applicant.html')
     
     def post(self,request):
-        return redirect('app:posts_view')
+        if('post' in request.POST):
+            return redirect('app:posts_view')
+        elif('logout' in request.POST):
+            del request.session['email']
+            del request.session['name']
+            del request.session['surname']
+            del request.session['industry']
+            del request.session['region']
+            del request.session['province']
+            del request.session['city']
+            del request.session['age']
+            return redirect('app:landing_view')
 
 
 class ViewAsEView(View):
     def get(self,request):
         return render(request,'viewase.html')
+    
+    def post(self,request):
+        if('logout' in request.POST):
+            del request.session['email']
+            return redirect('app:landing_view')
+    
 
 #END OF VIEWAS
 
@@ -192,6 +209,7 @@ class PostsView(View):
     def post(self,request):
         
         yearsOfExperience = request.POST.get("yearsOfExperience")
+        position = request.POST.get("position")
         industry = request.POST.get("industry")
         region = request.POST.get("region")
         province = request.POST.get("province")
@@ -205,17 +223,19 @@ class PostsView(View):
 
         form = Posts(
             yearsOfExperience = yearsOfExperience,
+            position = position,
             industry = industry,
             region = region,
             province = province,
             city = city,
             age = age,
             dateadded = datetime.now(),
-            
-            # EMAIL TO BE IMPLEMENTED WHEN WE HAVE SESSIONS
-            isAgeViewable = isAgeViewable
+            email = request.session['email'],
+            isAgeViewable = isAgeViewable,
+            firstname = request.session['name'],
+            lastname = request.session['surname']
         )
         form.save()
-        return redirect('app:posts_view')
+        return redirect('app:viewasa_view')
 
 #END OF POSTS

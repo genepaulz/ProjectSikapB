@@ -135,11 +135,12 @@ body{
                     {% csrf_token %}
                     <input type="hidden" value="{{profile.email}}" name="email">
                     <input type="number" class="input" name="yearsOfExperience" placeholder="Years of Experience">
-                    <input type="text" class="input" name="industry" placeholder="Industry">
-                    <input type="text" class="input" name="region" placeholder="Region">
-                    <input type="text" class="input" name="province" placeholder="Province">
-                    <input type="text" class="input" name="city" placeholder="City">
-                    <input type="number" class="input" name="age" placeholder="Age">
+                    <input type="text" class="input" name="position" placeholder="Position / Job Title">
+                    <input type="text" class="input" name="industry" placeholder="Industry" value="{{request.session.industry}}">
+                    <input type="text" class="input" name="region" placeholder="Region" value="{{request.session.region}}">
+                    <input type="text" class="input" name="province" placeholder="Province" value="{{request.session.province}}">
+                    <input type="text" class="input" name="city" placeholder="City" value="{{request.session.city}}">
+                    <input type="number" class="input" name="age" placeholder="Age" value="{{request.session.age}}">
                     <br>
                     <br>
                     <input type="checkbox" class="checkbox" name="isAgeViewable">
