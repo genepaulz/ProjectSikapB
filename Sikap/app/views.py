@@ -30,16 +30,12 @@ class LoginView(View):
         password = request.POST.get("pass")
 
         q = User.objects.get(email=email)
-<<<<<<< HEAD
         context = {
             'profile' : q,
         }
 
-        if(q.password == password):
-=======
-        #if(q.password == password):
+
         if(q.verify_password(password)):
->>>>>>> 551bce025350d0972c20d3f8832ccb1cba0414b1
             if(q.user_type):
                 #IMPLEMENT CONTEXT HERE
                 return render(request,'viewase.html',context)
