@@ -6,7 +6,6 @@ class userForm(forms.ModelForm):
     class Meta:
         model = User
         fields = [
-            'account_type',
             'email',
             'password',
             'name',
@@ -26,6 +25,10 @@ class postsForm(forms.ModelForm):
     class Meta:
         model = Posts
         fields = [
+            'email',
+            'name',
+            'surname',
+            'position',
             'yearsOfExperience',
             'industry',
             'region',
@@ -33,6 +36,5 @@ class postsForm(forms.ModelForm):
             'city',
             'age',
             'dateadded',
-            'email',
             'isAgeViewable'
         ]
