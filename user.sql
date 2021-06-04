@@ -32,8 +32,8 @@ CREATE TABLE `user` (
   `id` bigint(20) NOT NULL,
   `email` varchar(100) NOT NULL,
   `password` varchar(100) NOT NULL,
-  `name` varchar(100) NOT NULL,
-  `surname` varchar(100) NOT NULL,
+  `firstname` varchar(100) NOT NULL,
+  `lastname` varchar(100) NOT NULL,
   `user_type` int(11) NOT NULL,
   `isVerified` int(11) NOT NULL,
   `companyName` varchar(100) NOT NULL,
@@ -48,7 +48,7 @@ CREATE TABLE `user` (
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`id`, `email`, `password`, `name`, `surname`, `user_type`, `isVerified`, `companyName`, `industry`, `region`, `province`, `city`, `age`) VALUES
+INSERT INTO `user` (`id`, `email`, `password`, `firstname`, `lastname`, `user_type`, `isVerified`, `companyName`, `industry`, `region`, `province`, `city`, `age`) VALUES
 (1, 'larry_trivett@abscbn.com', '$pbkdf2-sha256$10$/98bI4TwvrdWqvX.3ztHiA$5Y5t8FTrOgD1oHRS.cBiL8xdP5RLJ7wS/pBdub/H0Fw', 'Larry', 'Trivett', 1, 0, 'ABS-CBN', 'Entertainment', '', '', '', 0),
 (2, 'wbishop@bpi.com', '$pbkdf2-sha256$10$f49RyrkXwhijVOo9h3DufQ$S9eFQm1CCbuagFXwdgKiRlyODBjJqAXLfptDAgUm8yc', 'Wren', 'Bishop', 1, 0, 'BPI', 'Finanace', '', '', '', 0),
 (3, 'woody_saunders@samsung.com', '$pbkdf2-sha256$10$XktJKSUEgPB.r3VOaY0x5g$Qd4vV3hpumfh6/jLzele78vLdDc39Er/uOLBbiUKPas', 'Woody', 'Saunders', 1, 0, 'Samsung', 'Computer', '', '', '', 0),

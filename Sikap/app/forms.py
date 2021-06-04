@@ -8,7 +8,7 @@ class userForm(forms.ModelForm):
         fields = [
             'email',
             'password',
-            'name',
+            'firstname',
             'surname',
             'user_type',
             'isVerified',
@@ -26,7 +26,7 @@ class postsForm(forms.ModelForm):
         model = Posts
         fields = [
             'email',
-            'name',
+            'firstname',
             'surname',
             'position',
             'yearsOfExperience',

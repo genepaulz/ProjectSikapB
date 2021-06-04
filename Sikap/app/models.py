@@ -7,8 +7,8 @@ from passlib.hash import pbkdf2_sha256
 class User(models.Model):
     email = models.CharField(max_length = 100)
     password = models.CharField(max_length = 100)
-    name = models.CharField(max_length = 100)
-    surname = models.CharField(max_length = 100)
+    firstname = models.CharField(max_length = 100)
+    lastname = models.CharField(max_length = 100)
     user_type = models.IntegerField()
     isVerified = models.IntegerField()
     companyName = models.CharField(max_length = 100)
@@ -16,7 +16,7 @@ class User(models.Model):
     region = models.CharField(max_length = 100)
     province = models.CharField(max_length = 100)
     city = models.CharField(max_length = 100)
-    age = models.IntegerField()
+    age = models.IntegerField(blank=True, null=True)
 
     def __str__(self):
         return self.name
@@ -31,8 +31,8 @@ class User(models.Model):
 
 class Posts(models.Model):
     email = models.CharField(max_length = 100)
-    name = models.CharField(max_length = 100)
-    surname = models.CharField(max_length = 100)
+    firstname = models.CharField(max_length = 100)
+    lastname = models.CharField(max_length = 100)
     position = models.CharField(max_length = 100)
     yearsOfExperience = models.IntegerField()
     industry = models.CharField(max_length = 100)
