@@ -32,13 +32,20 @@ class LoginView(View):
         q = User.objects.get(email=email)
         if(q.verify_password(password)):
             if(q.user_type):
-                #IMPLEMENT CONTEXT HERE                
-                return render(request,'viewase.html',context)
+                #IMPLEMENT CONTEXT HERE
+                request.session['email'] = q.email                
+                return redirect('app:viewase_view')
                 
             else:
                 #IMPLEMENT CONTEXT HERE
-                request.session['name'] = q.name
+                request.session['email'] = q.email
+                request.session['name'] = q.firstname
+                request.session['surname'] = q.lastname
                 request.session['industry'] = q.industry
+                request.session['region'] = q.region
+                request.session['province'] = q.province
+                request.session['city'] = q.city
+                request.session['age'] = q.age
                 return redirect('app:viewasa_view')
                 # return render(request,'applicant.html',context)
                 
@@ -91,8 +98,8 @@ class RegisterViewA(View):
                 
                 email = email,
                 password = enc_password,
-                name = name,
-                surname = surname,
+                firstname = name,
+                lastname = surname,
                 user_type = user_type,
                 isVerified = isVerified,
                 companyName = "",
@@ -142,8 +149,8 @@ class RegisterViewE(View):
                 
                 email = email,
                 password = enc_password,
-                name = name,
-                surname = surname,
+                firstname = name,
+                lastname = surname,
                 user_type = user_type,
                 isVerified = isVerified,
                 companyName = companyName,
@@ -166,13 +173,7 @@ class ViewAsAView(View):
         return render(request,'applicant.html')
     
     def post(self,request):
-        
-        email = request.POST.get("email")
-        q = User.objects.get(email = email)
-        context = {
-            'profile' : q,
-        }
-        return render(request,'createpost.html',context)
+        return redirect('app:posts_view')
 
 
 class ViewAsEView(View):
@@ -189,7 +190,7 @@ class PostsView(View):
         return render(request,'createpost.html')
 
     def post(self,request):
-        email = request.POST.get("email")
+        
         yearsOfExperience = request.POST.get("yearsOfExperience")
         industry = request.POST.get("industry")
         region = request.POST.get("region")
@@ -210,7 +211,7 @@ class PostsView(View):
             city = city,
             age = age,
             dateadded = datetime.now(),
-            email = email,
+            
             # EMAIL TO BE IMPLEMENTED WHEN WE HAVE SESSIONS
             isAgeViewable = isAgeViewable
         )
