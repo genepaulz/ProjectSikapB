@@ -3,16 +3,42 @@
 <title>Employer ViewAs Page</title>
 {% load static %}
 <link rel="stylesheet" href="{% static 'style1.css'%}">
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<style>
+.navbar{
+    width: 100%;
+    position: fixed;
+    background: whitesmoke;
+    opacity: 1;
+}
+.nav-right {
+    float: right;
+}
+</style>
 </head>
 <body>
-    <div class="website">
-        <header>
-           <h3>SIKAP</h3>
-            <div class="right-side">
-                <a href ="#" class ="logout_btn">Logout</a>
+    <nav class="navbar sticky-top navbar-light bg-dark">
+        <div class="container-fluid">
+          <div class="navbar-header">
+            <a class="navbar-brand" href="#">Sikap</a>
+          </div>
+            <ul class="nav navbar-nav">
+                <li class="active"><a href="#">Home</a></li>
+                <li class="text-secondary"><a href="#">Find Employers</a></li>
+                <li class="text-secondary"><a href="#">Profile</a></li>
+                <li><a href="#" class="text-secondary">Explore</a></li>
+            </ul>
+            <div class="nav-right">
+                <form class="form-inline my-2 my-lg-0 al" style="padding-top: 10px;">
+                    <input class="form-control mr-sm-2" type="search" placeholder="Search" aria-label="Search">
+                    <button class="btn btn-outline-success my-2 my-sm-0" style="background: #0496ff;" type="submit">Search</button>
+                </form>
             </div>
-        </header>
-    </div>
+        </div>
+    </nav>
 
     <div class="sidebar">
         <center>
