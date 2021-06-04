@@ -41,7 +41,8 @@ class LoginView(View):
         if(q.verify_password(password)):
             if(q.user_type):
                 #IMPLEMENT CONTEXT HERE
-                request.session['email'] = q.email                
+                request.session['email'] = q.email       
+                request.session['companyName'] = q.companyName
                 return redirect('app:viewase_view')
                 
             else:
@@ -202,6 +203,7 @@ class ViewAsEView(View):
     def post(self,request):
         if('logout' in request.POST):
             del request.session['email']
+            del request.session['companyName']
             return redirect('app:landing_view')
     
 

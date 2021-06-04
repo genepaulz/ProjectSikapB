@@ -45,7 +45,7 @@
         <center>
             <img src="{% static 'sample.jpg'%}" class ="profile_image" alt="">
         </center>
-        <header> {{profile.companyName}} </header>
+        <header> {{request.session.companyName}} </header>
         <ul class ="sidebar-nav">
             <li><a href="#">Profile</a></li>
             <li><a href="#">Search</a></li>
