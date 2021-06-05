@@ -216,19 +216,37 @@ def LiveSearch(request):
     mat = Posts.objects.filter(industry__icontains=filt)
     print(filt)
     for objects in mat:
-        d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
+        # d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
+        d += 
+        <div class="card">
+            <img src='{% static "img_avatar.png"%}' alt="Avatar" style="width:100%">
+            <div class="container">
+              <h4><b>objects.lastname+","+objects.firstname+"</b></h4>
+              <p>Position: objects.postion</p>
+              <p>Years of Experience: objects.yearsOfExperience</p>
+              <p>Industry: objects.industry</p>
+              <p>Region: objects.region</p>
+              <p>Province: objects.province</p>
+              <p>City: objects.city</p>
+              <p>Age: objects.age</p>
+            </div>
+        </div>
+        
     print(d)
     mat = Posts.objects.filter(region__icontains=filt)
     for objects in mat:
-        d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
+        # d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
+        d += "<div class='card'><img src='{% static 'img_avatar.png' %}' alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+"" +objects.firstname+"</b></h4><p>+objects.position+</p></div></div>"
     print(d)
     mat = Posts.objects.filter(province__icontains=filt)
     for objects in mat:
-        d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
+        # d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
+        d += "<div class='card'><img src='{% static 'img_avatar.png' %}' alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+"" +objects.firstname+"</b></h4><p>+objects.position+</p></div></div>"
     print(d)
     mat = Posts.objects.filter(city__icontains=filt)
     for objects in mat:
-        d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
+        # d += "<div class='row-lg' id='results'>Name: "+objects.lastname+", "+objects.firstname+"</div>"
+        d += "<div class='card'><img src='{% static 'img_avatar.png' %}' alt='Avatar' style='width:100%'><div class='container'><h4><b>"+objects.lastname+"" +objects.firstname+"</b></h4><p>+objects.position+</p></div></div>"
     print(d)
     return JsonResponse({"d": d})
     #def get(self, request):
