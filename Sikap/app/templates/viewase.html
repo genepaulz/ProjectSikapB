@@ -37,7 +37,7 @@
             data: {"d": $("#materialInput").val()},
             dataType: "json",
             beforeSend: function(){
-                if(($("#materialInput").val()).length <= 3){
+                if(($("#materialInput").val()).length <= 1){
                     // $("#table_body").html("hello");
                     return false;
                 }
